@@ -12,8 +12,10 @@ import server.BookBean;
 import server.BookBeanLocal;
 
 /**
- *
  * @author remi
+ * This servlet initializes the database with 3 books
+ * It calls the method initializeBooks of BookBeanLocal
+ * 
  */
 @WebServlet(name = "InitServlet", urlPatterns = {"/Init"})
 public class InitServlet extends HttpServlet {
@@ -39,7 +41,7 @@ public class InitServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InitServlet</title>");            
+            out.println("<title>Servlet InitServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<p>Initialized database</p>");
@@ -86,5 +88,4 @@ public class InitServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

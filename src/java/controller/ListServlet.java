@@ -21,6 +21,9 @@ import server.BookBeanLocal;
 /**
  *
  * @author remi
+ * ListServlet is a servlet used to show the book list form the database
+ * to an HTML page.
+ * 
  */
 @WebServlet(name = "ListServlet", urlPatterns = {"/List"})
 public class ListServlet extends HttpServlet {
@@ -53,6 +56,7 @@ public class ListServlet extends HttpServlet {
             for (Book b : list) {
                 out.println(b + "<br />");
             }
+            out.println("<p><a href=\"bookform.jsp\"> Add a book </a></p>");
             out.println("</body>");
             out.println("</html>");
         }

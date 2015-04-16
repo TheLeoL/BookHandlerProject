@@ -10,6 +10,12 @@ import model.Book;
 /**
  *
  * @author remi
+ * 
+ * BookBean implements BookBeanLocal.
+ * 
+ * It is a bean linked to database with an entity manager.
+ * 
+ * This bean can initialize the datababse, show the list of books and add a new book
  */
 @Stateless
 public class BookBean implements BookBeanLocal {
@@ -20,6 +26,9 @@ public class BookBean implements BookBeanLocal {
     @PersistenceUnit
     EntityManagerFactory emf;
 
+    /**
+     * initializeBooks with 3 exemples.
+     */
     @Override
     public void initializeBooks() {
         EntityManager em;
@@ -35,7 +44,10 @@ public class BookBean implements BookBeanLocal {
         em.persist(b2);
         em.persist(b3);
     }
-    
+    /**
+     * this method return the list of books contained in the database
+     * @return the list of books in a List object
+     */
     @Override
     public List<Book> listBooks() {
         EntityManager em;
