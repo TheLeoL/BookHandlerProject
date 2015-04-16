@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/remi/NetBeansProjects/BooksApp/src/java/controller/ListAuthorsServlet.java</file>
+            <file>file:/home/remi/NetBeansProjects/BooksApp/web/listauthors.jsp</file>
             <file>file:/home/remi/NetBeansProjects/BooksApp/web/bookform.jsp</file>
-            <file>file:/home/remi/NetBeansProjects/BooksApp/web/style.css</file>
+            <file>file:/home/remi/NetBeansProjects/BooksApp/web/list.jsp</file>
+            <file>file:/home/remi/NetBeansProjects/BooksApp/src/java/server/BookBean.java</file>
             <file>file:/home/remi/NetBeansProjects/BooksApp/web/index.html</file>
+            <file>file:/home/remi/NetBeansProjects/BooksApp/src/java/model/Book.java</file>
         </group>
     </open-files>
 </project-private>

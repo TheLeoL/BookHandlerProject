@@ -8,33 +8,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <h1> Add a book </h1>
         <div>
             <%
-                String title = "", author = "", year = "2015", price = "5";
+                String title = (String) session.getAttribute("s_title");
+                String author = (String) session.getAttribute("s_author");
+                String year = (String) session.getAttribute("s_year");
+                String price = (String) session.getAttribute("s_price");
 
                 String add = request.getParameter("addabook");
+                
                 if (add != null) {
-
                     title = request.getParameter("title");
-                    if (title == null) {
-                        title = "";
-                    }
-
                     author = request.getParameter("author");
-                    if (author == null) {
-                        author = "";
-                    }
-
                     year = request.getParameter("year");
-                    if (year == null) {
-                        year = "2015";
-                    }
-
                     price = request.getParameter("price");
-                    if (price == null) {
-                        price = "5";
-                    }
+                }
 
+                if (title == null) {
+                    title = "";
+                }
+                
+                if (author == null) {
+                    author = "";
+                }
+                
+                if (year == null) {
+                    year = "2015";
+                }
+                
+                if (price == null) {
+                    price = "5";
                 }
 
                 session.setAttribute("s_title", title);
@@ -43,7 +47,7 @@
                 session.setAttribute("s_price", price);
             %>
 
-            <form id="bookForm" action="bookform.jsp" method=POST>
+            <form id="bookForm" action="Add" method=POST>
                 <p>
                     <label for="title">Title : </label>
                     <input id="title" name="title" type="text" value="<%= session.getAttribute("s_title")%>" required=REQUIRED />
@@ -61,7 +65,7 @@
                     <input id="price" name="price" type="number" step="0.01" min="0" value="<%= session.getAttribute("s_price")%>" required="REQUIRED"/>
                 </p>
                 <p>
-                    <input name="addabook" type="submit" value="Add this book"/>
+                    <input name="addabook" type="submit" value="Add"/>
                 </p>
             </form>
 

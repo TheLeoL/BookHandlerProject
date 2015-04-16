@@ -5,17 +5,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
 import model.Book;
 
 /**
  *
  * @author remi
- * 
- * BookBean implements BookBeanLocal.
- * 
- * It is a bean linked to database with an entity manager.
- * 
- * This bean can initialize the datababse, show the list of books and add a new book
  */
 @Stateless
 public class BookBean implements BookBeanLocal {
@@ -26,9 +21,6 @@ public class BookBean implements BookBeanLocal {
     @PersistenceUnit
     EntityManagerFactory emf;
 
-    /**
-     * initializeBooks with 3 exemples.
-     */
     @Override
     public void initializeBooks() {
         EntityManager em;
@@ -36,6 +28,8 @@ public class BookBean implements BookBeanLocal {
 
         em = emf.createEntityManager();
 
+        em.createQuery("DELETE FROM Book").executeUpdate();
+        
         b1 = new Book("Le Pere Goriot", "Honore de Balzac", (short) 2011, 1);
         b2 = new Book("Les Chouans", "Honore de Balzac", (short) 2010, 1);
         b3 = new Book("Les Miserables", "Victor Hugo", (short) 2014, 5);
@@ -44,10 +38,7 @@ public class BookBean implements BookBeanLocal {
         em.persist(b2);
         em.persist(b3);
     }
-    /**
-     * this method return the list of books contained in the database
-     * @return the list of books in a List object
-     */
+    
     @Override
     public List<Book> listBooks() {
         EntityManager em;
@@ -58,5 +49,29 @@ public class BookBean implements BookBeanLocal {
         list = em.createNamedQuery("Book.findAll").getResultList();
         
         return list;
+    }
+    
+    @Override
+    public List<String> listAuthors() {
+        EntityManager em;
+        List<String> list;
+
+        em = emf.createEntityManager();
+        
+        list = em.createNamedQuery("Book.findAuthors").getResultList();
+        
+        return list;
+    }
+    
+    @Override
+    public void addBook(String title, String author, short year, float price) {
+        EntityManager em;
+        Book b;
+        
+        em = emf.createEntityManager();
+        
+        b = new Book(title, author, year, price);
+
+        em.persist(b);
     }
 }

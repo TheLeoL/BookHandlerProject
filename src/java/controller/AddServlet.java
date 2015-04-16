@@ -13,12 +13,12 @@ import server.BookBeanLocal;
  *
  * @author remi
  */
-@WebServlet(name = "InitServlet", urlPatterns = {"/Init"})
-public class InitServlet extends HttpServlet {
+@WebServlet(name = "AddServlet", urlPatterns = {"/Add"})
+public class AddServlet extends HttpServlet {
 
     @EJB
     private BookBeanLocal bean;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,11 +30,17 @@ public class InitServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            bean.initializeBooks();
-            request.getRequestDispatcher("init.jsp").forward(request, response);
+
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        short year = Short.parseShort(request.getParameter("year"));
+        float price = Float.parseFloat(request.getParameter("price"));
+
+        bean.addBook(title, author, year, price);
+        request.getRequestDispatcher("bookform.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
